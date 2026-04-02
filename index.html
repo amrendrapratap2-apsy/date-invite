@@ -1,169 +1,257 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mansha 💜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background: #07071a;
+  }
 
   #root {
-    min-height: 560px;
-    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 40%, #0d1a3a 100%);
-    border-radius: 20px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 40px 20px; position: relative; overflow: hidden;
+    width: 100vw; height: 100vh;
+    background: radial-gradient(ellipse at 20% 50%, #1a0a2e 0%, #07071a 50%),
+                radial-gradient(ellipse at 80% 20%, #0d1a3a 0%, transparent 50%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
     font-family: 'DM Sans', sans-serif;
   }
 
-  .stars-bg { position: absolute; inset: 0; pointer-events: none; }
-  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--d,3s) ease-in-out infinite var(--delay,0s); }
-  @keyframes twinkle { 0%,100%{opacity:.15;transform:scale(1)} 50%{opacity:.9;transform:scale(1.4)} }
+  /* ── STARS ── */
+  .stars-layer {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle var(--d,3s) ease-in-out infinite var(--dl,0s);
+  }
+  @keyframes twinkle {
+    0%,100%{opacity:.1;transform:scale(1)}
+    50%{opacity:.95;transform:scale(1.5)}
+  }
 
-  .fhearts-wrap { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-  .fheart { position: absolute; bottom: -20px; animation: floatUp var(--d,4s) ease-in var(--delay,0s) infinite; opacity: 0; }
+  /* ── FLOATING HEARTS ── */
+  .hearts-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .fheart {
+    position: absolute; bottom: -30px;
+    animation: floatUp var(--d,5s) ease-in var(--dl,0s) infinite; opacity: 0;
+    user-select: none;
+  }
   @keyframes floatUp {
-    0%{transform:translateY(0) rotate(-10deg);opacity:0}
-    10%{opacity:.7} 90%{opacity:.2}
-    100%{transform:translateY(-580px) rotate(15deg);opacity:0}
+    0%{transform:translateY(0) rotate(-15deg);opacity:0}
+    8%{opacity:.65}
+    92%{opacity:.2}
+    100%{transform:translateY(-105vh) rotate(20deg);opacity:0}
   }
 
+  /* ── CARD ── */
   .card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 24px; padding: 36px 32px; max-width: 460px; width: 100%;
-    text-align: center; position: relative; backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 28px;
+    padding: 48px 44px;
+    width: min(500px, 90vw);
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    animation: cardIn .7s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+  @keyframes cardIn {
+    from{opacity:0;transform:translateY(36px) scale(.96)}
+    to{opacity:1;transform:translateY(0) scale(1)}
   }
 
+  /* ── STEPS ── */
   .step { display: none; }
-  .step.active { display: block; animation: fadeSlide .5s ease forwards; }
-  @keyframes fadeSlide { from{opacity:0;transform:translateX(18px)} to{opacity:1;transform:translateX(0)} }
+  .step.active {
+    display: block;
+    animation: stepIn .45s cubic-bezier(.25,.46,.45,.94) forwards;
+  }
+  @keyframes stepIn {
+    from{opacity:0;transform:translateX(22px)}
+    to{opacity:1;transform:translateX(0)}
+  }
 
-  .emoji-big { font-size: 52px; display: block; margin-bottom: 14px; animation: bounce 2s ease-in-out infinite; }
-  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  /* ── TYPOGRAPHY ── */
+  .emoji-big {
+    font-size: 58px; display: block; margin-bottom: 16px;
+    animation: floatEmoji 2.5s ease-in-out infinite;
+  }
+  @keyframes floatEmoji {
+    0%,100%{transform:translateY(0) rotate(-3deg)}
+    50%{transform:translateY(-10px) rotate(3deg)}
+  }
 
-  h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; margin-bottom:10px; line-height:1.3; }
-  h2 { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:#e8d5ff; margin-bottom:10px; line-height:1.4; }
-  p { font-size:14px; color:rgba(255,255,255,.65); line-height:1.7; margin-bottom:14px; }
-  p strong { color:#c084fc; font-weight:500; }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px,4vw,30px);
+    color: #fff; margin-bottom: 12px; line-height: 1.25;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px,3vw,22px);
+    font-style: italic; color: #e8d5ff; margin-bottom: 12px; line-height: 1.4;
+  }
+  p {
+    font-size: clamp(13px,1.8vw,15px);
+    color: rgba(255,255,255,.6); line-height: 1.75; margin-bottom: 14px;
+  }
+  p strong { color: #c084fc; font-weight: 500; }
 
   .pill {
-    display:inline-block; background:rgba(192,132,252,.15); border:1px solid rgba(192,132,252,.3);
-    color:#c084fc; border-radius:100px; font-size:11px; padding:4px 14px; margin-bottom:16px; letter-spacing:.5px;
+    display: inline-block;
+    background: rgba(192,132,252,.13); border: 1px solid rgba(192,132,252,.28);
+    color: #c084fc; border-radius: 100px;
+    font-size: 11px; padding: 5px 16px; margin-bottom: 18px; letter-spacing: .6px;
   }
 
+  /* ── RX CARD ── */
   .rx-card {
-    background:rgba(255,255,255,.06); border:1px dashed rgba(255,255,255,.2);
-    border-radius:16px; padding:16px 18px; margin:14px 0 20px; text-align:left;
+    background: rgba(255,255,255,.055); border: 1px dashed rgba(255,255,255,.18);
+    border-radius: 18px; padding: 18px 20px; margin: 16px 0 22px; text-align: left;
   }
-  .rx-card .rx { font-size:20px; font-weight:600; color:#a78bfa; margin-bottom:8px; font-family:'Playfair Display',serif; font-style:italic; }
-  .rx-card .row { display:flex; gap:8px; margin-bottom:5px; align-items:flex-start; }
-  .rx-card .lbl { font-size:10px; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:1px; min-width:80px; padding-top:2px; }
-  .rx-card .val { font-size:12px; color:rgba(255,255,255,.85); }
+  .rx { font-size: 22px; font-weight: 600; color: #a78bfa; margin-bottom: 10px; font-family: 'Playfair Display',serif; font-style: italic; }
+  .rx-row { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
+  .rx-lbl { font-size: 10px; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: 1px; min-width: 85px; padding-top: 2px; }
+  .rx-val { font-size: 13px; color: rgba(255,255,255,.88); }
 
+  /* ── BUTTONS ── */
   .btn-primary {
-    display:block; width:100%; background:linear-gradient(135deg,#7c3aed,#a855f7);
-    color:white; border:none; border-radius:14px; padding:13px 28px;
-    font-size:15px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; transition:all .2s; margin-top:6px;
+    display: block; width: 100%;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white; border: none; border-radius: 16px;
+    padding: 15px 28px; font-size: 15px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    cursor: pointer; transition: all .22s; margin-top: 8px;
+    letter-spacing: .2px;
   }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,58,237,.4); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(124,58,237,.45); }
+  .btn-primary:active { transform: translateY(0); }
 
-  .typewriter-text { font-size:15px; color:rgba(255,255,255,.8); line-height:1.8; min-height:90px; margin-bottom:16px; }
-  .cursor { display:inline-block; width:2px; height:17px; background:#a855f7; margin-left:2px; vertical-align:middle; animation:blink .8s step-end infinite; }
+  /* ── TYPEWRITER ── */
+  .typewriter-text {
+    font-size: clamp(14px,1.8vw,15px); color: rgba(255,255,255,.8);
+    line-height: 1.85; min-height: 100px; margin-bottom: 18px;
+  }
+  .cursor {
+    display: inline-block; width: 2px; height: 18px; background: #a855f7;
+    margin-left: 2px; vertical-align: middle;
+    animation: blink .8s step-end infinite;
+  }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  .yn-area { margin-top:20px; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  /* ── YES / NO AREA ── */
+  .yn-area { margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
 
   .btn-yes {
-    width:100%; background:linear-gradient(135deg,#059669,#10b981); color:white; border:none;
-    border-radius:14px; padding:14px 28px; font-size:16px; font-family:'DM Sans',sans-serif;
-    font-weight:500; cursor:pointer; transition:all .2s;
+    width: 100%; background: linear-gradient(135deg, #059669, #10b981);
+    color: white; border: none; border-radius: 16px;
+    padding: 15px 28px; font-size: 16px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: all .22s;
   }
-  .btn-yes:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 10px 28px rgba(16,185,129,.4); }
+  .btn-yes:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 32px rgba(16,185,129,.42); }
 
-  .bear-no-wrap { display:flex; flex-direction:column; align-items:center; gap:0; }
+  .bear-no-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
   .bear-svg { transition: transform .2s cubic-bezier(.34,1.56,.64,1); transform-origin: bottom center; }
 
   .btn-no {
-    background:rgba(239,68,68,.15); border:1px solid rgba(239,68,68,.4);
-    color:#fca5a5; border-radius:14px; padding:11px 32px; font-size:14px;
-    font-family:'DM Sans',sans-serif; cursor:pointer; transition:background .15s; white-space:nowrap; display:block;
+    background: rgba(239,68,68,.13); border: 1px solid rgba(239,68,68,.35);
+    color: #fca5a5; border-radius: 14px; padding: 12px 34px; font-size: 14px;
+    font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background .15s; white-space: nowrap;
   }
-  .btn-no:hover { background:rgba(239,68,68,.25); }
+  .btn-no:hover { background: rgba(239,68,68,.22); }
 
-  /* === YES / SUCCESS SCREEN === */
+  /* ── SUCCESS SCREEN ── */
   .her-photo-wrap {
-    width: 110px; height: 110px; border-radius: 50%;
-    margin: 0 auto 16px;
-    border: 3px solid rgba(192,132,252,0.6);
-    overflow: hidden;
-    box-shadow: 0 0 0 6px rgba(192,132,252,0.12), 0 0 28px rgba(168,85,247,0.4);
-    animation: photoPop .8s cubic-bezier(.34,1.56,.64,1) forwards;
+    width: 120px; height: 120px; border-radius: 50%;
+    margin: 0 auto 18px; overflow: hidden;
+    border: 3px solid rgba(192,132,252,.6);
+    box-shadow: 0 0 0 8px rgba(192,132,252,.1), 0 0 36px rgba(168,85,247,.45);
+    animation: photoPop .9s cubic-bezier(.34,1.56,.64,1) forwards;
   }
-  @keyframes photoPop { from{transform:scale(0) rotate(-15deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
-  .her-photo-wrap img { width:100%; height:100%; object-fit:cover; }
+  @keyframes photoPop {
+    from{transform:scale(0) rotate(-20deg);opacity:0}
+    to{transform:scale(1) rotate(0);opacity:1}
+  }
+  .her-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-  .heart-burst { font-size:36px; display:block; animation:heartpop 1s cubic-bezier(.34,1.56,.64,1) forwards; margin-bottom:10px; }
+  .heart-burst {
+    font-size: 40px; display: block;
+    animation: heartpop 1s cubic-bezier(.34,1.56,.64,1) forwards; margin-bottom: 12px;
+  }
   @keyframes heartpop {
     0%{transform:scale(0) rotate(-20deg);opacity:0}
-    60%{transform:scale(1.3) rotate(8deg);opacity:1}
+    60%{transform:scale(1.35) rotate(8deg);opacity:1}
     100%{transform:scale(1) rotate(0);opacity:1}
   }
 
   .confirmed-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35);
-    color: #6ee7b7; border-radius: 100px; font-size: 11px; padding: 5px 14px;
-    margin-bottom: 14px; letter-spacing: .4px;
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(16,185,129,.13); border: 1px solid rgba(16,185,129,.32);
+    color: #6ee7b7; border-radius: 100px; font-size: 11px;
+    padding: 5px 16px; margin-bottom: 14px; letter-spacing: .4px;
   }
-  .confirmed-badge span { width:6px; height:6px; background:#10b981; border-radius:50%; animation:pulse-dot 1.2s ease-in-out infinite; display:inline-block; }
-  @keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
+  .live-dot {
+    width: 7px; height: 7px; background: #10b981; border-radius: 50%;
+    animation: pulse-dot 1.3s ease-in-out infinite; display: inline-block;
+  }
+  @keyframes pulse-dot {
+    0%,100%{transform:scale(1);opacity:1}
+    50%{transform:scale(1.6);opacity:.55}
+  }
 
   .venue-card {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 18px; padding: 18px 20px; margin: 12px 0 6px; text-align: left;
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px; padding: 20px 22px; margin: 14px 0 6px; text-align: left;
   }
-  .venue-row { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
-  .venue-row:last-child { margin-bottom:0; }
-  .venue-icon { font-size:18px; min-width:24px; margin-top:1px; }
-  .venue-text { display:flex; flex-direction:column; gap:2px; }
-  .venue-label { font-size:10px; color:rgba(255,255,255,.35); text-transform:uppercase; letter-spacing:1px; }
-  .venue-value { font-size:13px; color:rgba(255,255,255,.9); line-height:1.5; }
-  .venue-value strong { color:#e8d5ff; font-weight:500; }
-
-  .time-pill {
-    display:inline-flex; align-items:center; gap:6px;
-    background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(168,85,247,.2));
-    border:1px solid rgba(168,85,247,.4); color:#d8b4fe;
-    border-radius:100px; font-size:13px; font-weight:500;
-    padding:6px 18px; margin-top:14px;
-  }
+  .v-row { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 14px; }
+  .v-row:last-child { margin-bottom: 0; }
+  .v-icon { font-size: 20px; min-width: 26px; margin-top: 1px; }
+  .v-info { display: flex; flex-direction: column; gap: 3px; }
+  .v-label { font-size: 10px; color: rgba(255,255,255,.32); text-transform: uppercase; letter-spacing: 1px; }
+  .v-value { font-size: 13px; color: rgba(255,255,255,.92); line-height: 1.55; }
+  .v-value strong { color: #e8d5ff; font-weight: 500; }
 
   .maps-btn {
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-    color:rgba(255,255,255,0.8); border-radius:12px; padding:10px 20px;
-    font-size:13px; font-family:'DM Sans',sans-serif; cursor:pointer;
-    margin-top:14px; transition:all .2s; text-decoration:none; width:100%; justify-content:center;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+    color: rgba(255,255,255,.78); border-radius: 14px; padding: 12px 20px;
+    font-size: 13px; font-family: 'DM Sans', sans-serif; cursor: pointer;
+    margin-top: 14px; transition: all .2s; text-decoration: none; width: 100%;
   }
-  .maps-btn:hover { background:rgba(255,255,255,0.13); transform:translateY(-1px); }
+  .maps-btn:hover { background: rgba(255,255,255,.13); transform: translateY(-1px); }
 
-  .progress-dots { display:flex; gap:6px; justify-content:center; margin-top:20px; }
-  .dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.2); transition:all .3s; }
-  .dot.active { background:#a855f7; transform:scale(1.3); }
-  .dot.done { background:rgba(168,85,247,.4); }
+  /* ── PROGRESS DOTS ── */
+  .progress-dots { display: flex; gap: 7px; justify-content: center; margin-top: 24px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.18); transition: all .3s; }
+  .dot.active { background: #a855f7; transform: scale(1.35); }
+  .dot.done { background: rgba(168,85,247,.4); }
 
+  /* ── SHAKE / BEAR ── */
   @keyframes shake {
     0%,100%{transform:translateX(0)}
-    20%{transform:translateX(-6px)}
-    40%{transform:translateX(6px)}
-    60%{transform:translateX(-4px)}
-    80%{transform:translateX(4px)}
+    20%{transform:translateX(-7px)} 40%{transform:translateX(7px)}
+    60%{transform:translateX(-4px)} 80%{transform:translateX(4px)}
   }
   @keyframes bearJump {
     0%,100%{transform:scale(var(--bs,1)) translateY(0)}
-    50%{transform:scale(var(--bs,1)) translateY(-8px)}
+    50%{transform:scale(var(--bs,1)) translateY(-12px)}
   }
 </style>
-
+</head>
+<body>
 <div id="root">
-  <div class="stars-bg" id="stars"></div>
-  <div class="fhearts-wrap" id="fhearts"></div>
+  <div class="stars-layer" id="stars"></div>
+  <div class="hearts-layer" id="fhearts"></div>
 
   <div class="card" id="card">
 
@@ -173,7 +261,7 @@
       <div class="pill">A message for Dr. Mansha 💜</div>
       <h1>Hey, Doc 💜</h1>
       <p>After <strong>4–5 years</strong> of knowing each other, I think I've earned at least <strong>20 seconds</strong> of your attention.</p>
-      <p style="font-size:12px;color:rgba(255,255,255,.35);">No anesthesia required. Probably.</p>
+      <p style="font-size:12px;color:rgba(255,255,255,.3);">No anesthesia required. Probably.</p>
       <button class="btn-primary" onclick="goTo(1)">Okay fine, proceed →</button>
     </div>
 
@@ -184,11 +272,11 @@
       <p>After years of careful observation, I've identified a condition requiring your expert opinion.</p>
       <div class="rx-card">
         <div class="rx">℞</div>
-        <div class="row"><span class="lbl">Patient</span><span class="val">One hopeless guy who can't stop thinking about you</span></div>
-        <div class="row"><span class="lbl">Diagnosis</span><span class="val">You've been living rent-free in his head for years 🏠</span></div>
-        <div class="row"><span class="lbl">Symptoms</span><span class="val">Smiling at phone, "this reminds me of Mansha" moments</span></div>
-        <div class="row"><span class="lbl">Prescription</span><span class="val">One date. Doctor's (patient's?) orders 💊</span></div>
-        <div class="row"><span class="lbl">Side effects</span><span class="val">May cause laughter, good memories, and more dates</span></div>
+        <div class="rx-row"><span class="rx-lbl">Patient</span><span class="rx-val">One hopeless guy who can't stop thinking about you</span></div>
+        <div class="rx-row"><span class="rx-lbl">Diagnosis</span><span class="rx-val">You've been living rent-free in his head for years 🏠</span></div>
+        <div class="rx-row"><span class="rx-lbl">Symptoms</span><span class="rx-val">Smiling at phone, "this reminds me of Mansha" moments</span></div>
+        <div class="rx-row"><span class="rx-lbl">Prescription</span><span class="rx-val">One date. Doctor's (patient's?) orders 💊</span></div>
+        <div class="rx-row"><span class="rx-lbl">Side effects</span><span class="rx-val">May cause laughter, good memories, and more dates</span></div>
       </div>
       <button class="btn-primary" onclick="goTo(2)">Continue consultation →</button>
     </div>
@@ -206,13 +294,13 @@
       <span class="emoji-big" style="animation-duration:1s;">💝</span>
       <h1>The Question 💜</h1>
       <p>Doctor Mansha, after all this time, I have just one thing to ask:</p>
-      <p style="font-size:17px;color:#e8d5ff;font-family:'Playfair Display',serif;font-style:italic;margin:8px 0 4px;">Will you go on a date with me?</p>
-      <p style="font-size:11px;color:rgba(255,255,255,.3);">The No button has been warned. It's scared.</p>
+      <p style="font-size:18px;color:#e8d5ff;font-family:'Playfair Display',serif;font-style:italic;margin:10px 0 6px;">Will you go on a date with me?</p>
+      <p style="font-size:11px;color:rgba(255,255,255,.28);">The No button has been warned. It's terrified.</p>
 
       <div class="yn-area">
         <button class="btn-yes" onclick="goToYes()">Yes, absolutely 😍</button>
         <div class="bear-no-wrap" id="bearNoWrap">
-          <svg class="bear-svg" id="bearSvg" width="80" height="90" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+          <svg class="bear-svg" id="bearSvg" width="84" height="94" viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
             <circle cx="20" cy="22" r="11" fill="#c8a87a"/>
             <circle cx="20" cy="22" r="6" fill="#e8c99a"/>
             <circle cx="60" cy="22" r="11" fill="#c8a87a"/>
@@ -239,41 +327,40 @@
       </div>
     </div>
 
-    <!-- YES / SUCCESS SCREEN -->
+    <!-- SUCCESS SCREEN -->
     <div class="step" id="step-yes">
       <span class="heart-burst">💖</span>
 
-      <!-- Her photo — swap URL after GitHub upload -->
+      <!-- REPLACE src with your GitHub Pages URL after uploading -->
       <div class="her-photo-wrap">
-        <img src="https://github.com/amrendrapratap2-apsy/date-invite/blob/main/image.jpeg" alt="Mansha"
+        <img src="image.jpeg" alt="Mansha"
           onerror="this.parentElement.style.background='linear-gradient(135deg,#7c3aed,#a855f7)';this.style.display='none';" />
       </div>
 
-      <div class="confirmed-badge"><span></span> Date Confirmed 🎉</div>
-
+      <div class="confirmed-badge"><span class="live-dot"></span> Date Confirmed 🎉</div>
       <h1>Your date is fixed! 💜</h1>
-      <p style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:4px;">I'll be waiting for you here —</p>
+      <p style="color:rgba(255,255,255,.45);font-size:13px;margin-bottom:6px;">I'll be waiting for you right here —</p>
 
       <div class="venue-card">
-        <div class="venue-row">
-          <span class="venue-icon">📍</span>
-          <div class="venue-text">
-            <span class="venue-label">Address</span>
-            <span class="venue-value"><strong>13, Third Floor</strong><br>Sham Nath Marg, Civil Lines<br>New Delhi, Delhi 110054</span>
+        <div class="v-row">
+          <span class="v-icon">📍</span>
+          <div class="v-info">
+            <span class="v-label">Address</span>
+            <span class="v-value"><strong>13, Third Floor</strong><br>Sham Nath Marg, Civil Lines<br>New Delhi, Delhi 110054</span>
           </div>
         </div>
-        <div class="venue-row">
-          <span class="venue-icon">🕖</span>
-          <div class="venue-text">
-            <span class="venue-label">Time</span>
-            <span class="venue-value"><strong>7:00 PM — Tonight</strong></span>
+        <div class="v-row">
+          <span class="v-icon">🕖</span>
+          <div class="v-info">
+            <span class="v-label">Time</span>
+            <span class="v-value"><strong>7:00 PM — Tonight</strong></span>
           </div>
         </div>
-        <div class="venue-row">
-          <span class="venue-icon">👔</span>
-          <div class="venue-text">
-            <span class="venue-label">Dress code</span>
-            <span class="venue-value">Just be yourself 😌</span>
+        <div class="v-row">
+          <span class="v-icon">👔</span>
+          <div class="v-info">
+            <span class="v-label">Dress code</span>
+            <span class="v-value">Just be yourself 😌</span>
           </div>
         </div>
       </div>
@@ -285,7 +372,7 @@
       </a>
     </div>
 
-  </div>
+  </div><!-- /card -->
 
   <div class="progress-dots" id="dots">
     <div class="dot active" data-i="0"></div>
@@ -293,12 +380,10 @@
     <div class="dot" data-i="2"></div>
     <div class="dot" data-i="3"></div>
   </div>
-</div>
+</div><!-- /root -->
 
 <script>
-  let currentStep = 0;
-  let noCount = 0;
-  let bearScale = 1;
+  let currentStep = 0, noCount = 0, bearScale = 1;
 
   const noTexts = [
     "No 😶","Are you sure? 🤨","Wrong diagnosis 😤","Try again... 🥺",
@@ -307,22 +392,22 @@
 
   // Stars
   const starsEl = document.getElementById('stars');
-  for (let i = 0; i < 55; i++) {
+  for (let i = 0; i < 90; i++) {
     const s = document.createElement('div');
     s.className = 'star';
-    const sz = Math.random() * 2.5 + 1;
-    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*4}s;`;
+    const sz = Math.random() * 2.8 + .8;
+    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--dl:${Math.random()*5}s;`;
     starsEl.appendChild(s);
   }
 
   // Floating hearts
   const fhEl = document.getElementById('fhearts');
-  const hchars = ['♥','♡','❤','✿','✦','★'];
-  for (let i = 0; i < 14; i++) {
+  const hchars = ['♥','♡','❤','✿','✦','★','◆'];
+  for (let i = 0; i < 18; i++) {
     const h = document.createElement('div');
     h.className = 'fheart';
     h.textContent = hchars[i % hchars.length];
-    h.style.cssText = `left:${Math.random()*100}%;color:rgba(192,132,252,${0.15+Math.random()*0.35});font-size:${10+Math.random()*8}px;--d:${5+Math.random()*5}s;--delay:${Math.random()*7}s;`;
+    h.style.cssText = `left:${Math.random()*100}%;color:rgba(192,132,252,${.12+Math.random()*0.3});font-size:${9+Math.random()*9}px;--d:${6+Math.random()*6}s;--dl:${Math.random()*8}s;`;
     fhEl.appendChild(h);
   }
 
@@ -345,17 +430,17 @@
   }
 
   function spawnCelebration() {
-    const chars = ['❤','♥','✦','✿','★','💜','🌸'];
-    const colors = ['#f9a8d4','#c084fc','#a78bfa','#fb7185','#fbbf24','#6ee7b7'];
-    for (let i = 0; i < 40; i++) {
+    const chars = ['❤','♥','✦','✿','★','💜','🌸','✨'];
+    const colors = ['#f9a8d4','#c084fc','#a78bfa','#fb7185','#fbbf24','#6ee7b7','#fff'];
+    for (let i = 0; i < 50; i++) {
       setTimeout(() => {
         const h = document.createElement('div');
-        h.style.cssText = `position:absolute;bottom:${Math.random()*30}px;left:${Math.random()*100}%;font-size:${12+Math.random()*14}px;animation:floatUp ${3+Math.random()*3}s ease-in forwards;opacity:0;pointer-events:none;`;
+        h.style.cssText = `position:fixed;bottom:${Math.random()*40}px;left:${Math.random()*100}%;font-size:${12+Math.random()*16}px;animation:floatUp ${3+Math.random()*4}s ease-in forwards;opacity:0;pointer-events:none;z-index:999;`;
         h.textContent = chars[Math.floor(Math.random()*chars.length)];
         h.style.color = colors[Math.floor(Math.random()*colors.length)];
-        document.getElementById('root').appendChild(h);
-        setTimeout(() => h.remove(), 7000);
-      }, i * 70);
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 8000);
+      }, i * 60);
     }
   }
 
@@ -365,14 +450,14 @@
     let i = 0;
     el.innerHTML = '<span class="cursor"></span>';
     const iv = setInterval(() => {
-      el.innerHTML = msg.slice(0,i) + '<span class="cursor"></span>';
+      el.innerHTML = msg.slice(0, i) + '<span class="cursor"></span>';
       i++;
       if (i > msg.length) {
         clearInterval(iv);
         el.innerHTML = msg;
         document.getElementById('step2-btn').style.display = 'block';
       }
-    }, 32);
+    }, 30);
   }
 
   function setBearMood(mood) {
@@ -383,7 +468,6 @@
     const blushL = document.getElementById('blushL');
     const blushR = document.getElementById('blushR');
     const heart = document.getElementById('bearHeart');
-
     if (mood === 'scared') {
       mouth.setAttribute('d','M35 50 Q40 46 45 50');
       eyeL.setAttribute('ry','5'); eyeL.setAttribute('rx','3');
@@ -412,7 +496,7 @@
 
   function hoverNo() {
     noCount++;
-    bearScale = Math.min(bearScale + 0.1, 1.8);
+    bearScale = Math.min(bearScale + 0.1, 1.85);
     const bear = document.getElementById('bearSvg');
     bear.style.transform = `scale(${bearScale})`;
     bear.style.setProperty('--bs', bearScale);
@@ -421,7 +505,8 @@
     const btn = document.getElementById('noBtn');
     btn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
     btn.style.animation = 'none';
-    setTimeout(() => { btn.style.animation = 'shake .4s ease'; }, 10);
+    void btn.offsetWidth;
+    btn.style.animation = 'shake .4s ease';
   }
 
   function clickNo() {
@@ -434,18 +519,6 @@
       bear.style.transform = `scale(${bearScale})`;
     }, 900);
   }
-
-  const sty = document.createElement('style');
-  sty.textContent = `
-    @keyframes shake {
-      0%,100%{transform:translateX(0)}
-      20%{transform:translateX(-6px)} 40%{transform:translateX(6px)}
-      60%{transform:translateX(-4px)} 80%{transform:translateX(4px)}
-    }
-    @keyframes bearJump {
-      0%,100%{transform:scale(var(--bs,1)) translateY(0)}
-      50%{transform:scale(var(--bs,1)) translateY(-10px)}
-    }
-  `;
-  document.head.appendChild(sty);
 </script>
+</body>
+</html>
